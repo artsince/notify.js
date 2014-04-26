@@ -1,7 +1,8 @@
 var btnInfo = document.getElementById('btnInfo');
 btnInfo.addEventListener('click', function() {
     NOTIFY.notify('Home is where I want to be!', {
-        parent: document.body
+        parent: document.body,
+        top: 20
     });
 });
 

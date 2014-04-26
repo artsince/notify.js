@@ -1,19 +1,19 @@
-var NOTIFY = (function () {
+var NOTIFY = (function (d, w) {
     var _fn_createNotification = function(text) {
-        var divNotification = document.createElement('div');
-        var spanMessage = document.createElement('span');
+        var divNotification = d.createElement('div');
+        var spanMessage = d.createElement('span');
         var options = arguments[1] || {};
-    
+        var scrollTop = d.documentElement.scrollTop || d.body.scrollTop;
+        scrollTop += options.top ? options.top : 0;
+
         spanMessage.innerHTML = text;
         divNotification.appendChild(spanMessage);
         
         divNotification.className = 'notification';
         divNotification.className += ' ' + (options.level !== undefined ?options.level : 'info');
         
-        if(options.top) {
-            divNotification.style.top = options.top + 'px';
-        }
-
+        divNotification.style.top = scrollTop + 'px';
+        
         setTimeout(function () {
             divNotification.parentNode.removeChild(divNotification);
         }, options.lifetime ? lifeTime : 2500);
@@ -28,4 +28,4 @@ var NOTIFY = (function () {
     return {
         notify: _fn_createNotification
     };
-})();
+})(document, window);
