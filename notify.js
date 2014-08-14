@@ -1,4 +1,7 @@
-var NOTIFY = (function (d, w) {
+/* exported NOTIFY */
+var NOTIFY = (function (d) {
+    "use strict";
+
     var _fn_createNotification = function(text) {
         var divNotification = d.createElement('div');
         var spanMessage = d.createElement('span');
@@ -16,7 +19,7 @@ var NOTIFY = (function (d, w) {
         
         setTimeout(function () {
             divNotification.parentNode.removeChild(divNotification);
-        }, options.lifetime ? lifeTime : 2500);
+        }, options.lifetime ? options.lifeTime : 2500);
     
         if(options.parent) {
             options.parent.appendChild(divNotification);
@@ -28,4 +31,4 @@ var NOTIFY = (function (d, w) {
     return {
         notify: _fn_createNotification
     };
-})(document, window);
+})(document);
