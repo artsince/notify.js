@@ -40,6 +40,18 @@ module.exports = function (grunt) {
                 },
                 ignores: ['public/js/<%= pkg.name %>.min.js']
             }
+        },
+        copy: {
+            js: {
+                expand: true,
+                src: '<%= pkg.name %>.js',
+                dest: 'public/js/'
+            },
+            css: {
+                expand: true,
+                src: '<%= pkg.name %>.css',
+                dest: 'public/css/'
+            }
         }
     });
 
@@ -48,5 +60,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
 
-    grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('default', ['jshint', 'copy']);
 };
