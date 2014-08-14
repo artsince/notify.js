@@ -1,3 +1,17 @@
+@mixin animation($name, $dur) {
+    -webkit-animation: $name $dur;
+       -moz-animation: $name $dur;
+        -o-animation: $name $dur;
+            animation: $name $dur;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes $name { @content; }
+     @-moz-keyframes $name { @content; }
+       @-o-keyframes $name { @content; }
+          @keyframes $name { @content; }
+}
+
 $info-color: #888;
 $warning-color: #FFFF7E;
 $error-color: #bf0000;
@@ -14,8 +28,12 @@ $error-color: #bf0000;
     top: 0;
     opacity: 0;
     z-index: 300;
-    -webkit-animation:slideIn 2s; /* Chrome, Safari, Opera */
-    animation:slideIn 2s;
+    @include animation(slideIn, 2s);
+
+    span {
+        font-weight: bold;
+        color: #ddd;
+    }
 }
 
 .info {
@@ -29,21 +47,9 @@ $error-color: #bf0000;
 .error {
     background-color: $error-color;
 }
-.notification span {
-    font-weight: bold;
-    color: #ddd;
-}
 
-@-webkit-keyframes slideIn
-{
-0%   {left: -200px; opacity: 1;}
-50%  {left: 10px; opacity: 1;}
-100% {opacity: 0;}
-}
-
-@keyframes slideIn
-{
-0%   {left: -200px; opacity: 1;}
-50%  {left: 10px; opacity: 1;}
-100% {opacity: 0;}
+@include keyframes(slideIn) {
+    0%   {left: -200px; opacity: 1;}
+    50%  {left: 10px; opacity: 1;}
+    100% {opacity: 0;}
 }

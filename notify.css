@@ -11,8 +11,13 @@
   opacity: 0;
   z-index: 300;
   -webkit-animation: slideIn 2s;
-  /* Chrome, Safari, Opera */
+  -moz-animation: slideIn 2s;
+  -o-animation: slideIn 2s;
   animation: slideIn 2s;
+}
+.notification span {
+  font-weight: bold;
+  color: #ddd;
 }
 
 .info {
@@ -27,12 +32,37 @@
   background-color: #bf0000;
 }
 
-.notification span {
-  font-weight: bold;
-  color: #ddd;
-}
-
 @-webkit-keyframes slideIn {
+  0% {
+    left: -200px;
+    opacity: 1;
+  }
+
+  50% {
+    left: 10px;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes slideIn {
+  0% {
+    left: -200px;
+    opacity: 1;
+  }
+
+  50% {
+    left: 10px;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+@-o-keyframes slideIn {
   0% {
     left: -200px;
     opacity: 1;
