@@ -34,12 +34,12 @@ btnInfo.addEventListener('click', function() {
                 <div class="example">
                     <button id="btnWarning">warning</button>
                     <pre class="editor">
-var btnWarning = document.getElementById('btnWarning');
-btnWarning.addEventListener('click', function() {
-    NOTIFY.notify('Lift me up and turn me around!', {
+var btnError = document.getElementById('btnError');
+btnError.addEventListener('click', function() {
+    NOTIFY.notify('I feel numb!', {
         parent: document.body,
-        level: 'warning',
-        top: 20
+        level: 'error',
+        bottom: 10
     });
 });                 </pre>
                 </div>

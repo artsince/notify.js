@@ -23,7 +23,8 @@
     btnError.addEventListener('click', function() {
         NOTIFY.notify('I feel numb!', {
             parent: document.body,
-            level: 'error'
+            level: 'error',
+            bottom: 10
         });
     });
 }());

@@ -22,8 +22,6 @@ var NOTIFY = (function (d) {
         var divNotification = d.createElement('div');
         var spanMessage = d.createElement('span');
         var options = arguments[1] || {};
-        var scrollTop = d.documentElement.scrollTop || d.body.scrollTop;
-        scrollTop += options.top ? options.top : 0;
 
         spanMessage.innerHTML = text;
         divNotification.appendChild(spanMessage);
@@ -31,7 +29,12 @@ var NOTIFY = (function (d) {
         divNotification.className = 'notification';
         divNotification.className += ' ' + (options.level !== undefined ?options.level : 'info');
         
-        divNotification.style.top = scrollTop + 'px';
+        if(options.top) {
+            divNotification.style.top = options.top + 'px';
+        }
+        else if(options.bottom) {
+            divNotification.style.bottom = options.bottom + 'px';
+        }
 
         _fn_crossBrowserEventRegistery(divNotification, 'AnimationEnd', function (e) {
             if(e.animationName === 'slideIn') {

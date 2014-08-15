@@ -5,9 +5,8 @@
   padding-right: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
-  position: absolute;
+  position: fixed;
   left: 10px;
-  top: 0;
   opacity: 0;
   z-index: 300;
   -webkit-animation: slideIn 2s;
