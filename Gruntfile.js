@@ -62,6 +62,12 @@ module.exports = function (grunt) {
                 src: '<%= pkg.name %>.css',
                 dest: 'public/css/'
             }
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.config.js',
+                autowatch: false
+            }
         }
     });
 
@@ -69,6 +75,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['jshint', 'sass', 'copy']);
+    grunt.registerTask('default', ['karma', 'jshint', 'sass', 'copy']);
 };
