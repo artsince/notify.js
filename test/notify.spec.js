@@ -90,4 +90,60 @@ describe('NOTIFY module spec', function() {
             expect(notification.className).toEqual('notification error');
         });
     });
+
+    describe('testing cleaning up after the animation ends', function() {
+        beforeEach(function(done) {
+            setTimeout(function() {
+                done();
+            }, 1);
+        });
+
+        afterEach(function() {
+            var notifications = document.querySelectorAll('.notification'), i;
+            if(notifications) {
+                for(i = 0; i < notifications.length; i += 1) {
+                    document.body.removeChild(notifications[i]);
+                }
+            }
+        });
+
+        it('should destroy itself at the end of the css animation', function(done) {
+            expect(document.body.querySelector('.notification')).toBe(null);
+            
+            NOTIFY.notify('some message', {
+                parent: document.body
+            });
+
+            expect(document.body.querySelector('.notification')).toBeDefined();
+
+            // animation is 2s long as defined in the css file
+            setTimeout(function() {
+                expect(document.body.querySelector('.notification')).toBe(null);
+                done();
+            }, 3000);
+        });
+
+        it('should destroy not destroy itself before the css animation ends', function(done) {
+            expect(document.body.querySelector('.notification')).toBe(null);
+            
+            NOTIFY.notify('some message', {
+                parent: document.body
+            });
+
+            expect(document.body.querySelector('.notification')).toBeDefined();
+
+            // animation is 2s long as defined in the css file
+            setTimeout(function() {
+                // sometime before the animation ends
+                expect(document.body.querySelector('.notification')).not.toBe(null);
+
+                setTimeout(function() {
+                    // sometime after the animation ended
+                    expect(document.body.querySelector('.notification')).toBe(null);
+                    done();
+                }, 2000);
+
+            }, 1500);
+        });
+    });
 });
